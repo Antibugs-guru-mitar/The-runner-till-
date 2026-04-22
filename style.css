@@ -1,0 +1,98 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background: #000;
+  overflow: hidden;
+  touch-action: none;
+}
+
+#game-container {
+  display: flex;
+  justify-content: center;
+}
+
+#ui {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.top-bar {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 4px #000;
+}
+
+.screen {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.85);
+  color: white;
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  border: 3px solid #00aaff;
+  pointer-events: all;
+  width: 80%;
+  max-width: 350px;
+}
+
+.screen h1 {
+  font-size: 32px;
+  color: #00aaff;
+  margin-bottom: 10px;
+}
+
+.screen button {
+  background: #00aaff;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 10px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.screen button:active {
+  transform: scale(0.95);
+}
+
+.controls {
+  margin-top: 20px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.controls p {
+  margin: 5px 0;
+}
+
+.hidden {
+  display: none;
+}
+
+#final-score, #high-score {
+  font-size: 20px;
+  margin: 10px 0;
+}
