@@ -2,28 +2,45 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Arial', 'Helvetica', sans-serif;
   -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
-body {
+html, body {
+  width: 100%;
+  height: 100%;
   background: #000;
   overflow: hidden;
   touch-action: none;
+  position: fixed; /* Mobile scroll band karne ke liye */
 }
 
 #game-container {
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+#game-container canvas {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 #ui {
-  position: absolute;
+  position: fixed; /* absolute ki jagah fixed - har phone pe kaam kare */
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none;
+  pointer-events: none; /* FIX 1: UI click block nahi karega */
+  z-index: 10; /* FIX 2: UI hamesha upar rahe */
 }
 
 .top-bar {
@@ -34,10 +51,11 @@ body {
   display: flex;
   justify-content: space-between;
   padding: 0 20px;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: bold;
   color: white;
-  text-shadow: 2px 2px 4px #000;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+  pointer-events: none; /* Score pe click na ho */
 }
 
 .screen {
@@ -45,54 +63,84 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 0.9);
   color: white;
-  padding: 30px;
+  padding: 25px 20px;
   border-radius: 15px;
   text-align: center;
   border: 3px solid #00aaff;
-  pointer-events: all;
-  width: 80%;
-  max-width: 350px;
+  pointer-events: all; /* FIX 3: Screen pe click kaam kare */
+  width: 85%;
+  max-width: 340px;
+  z-index: 20; /* Button sabse upar */
 }
 
 .screen h1 {
-  font-size: 32px;
+  font-size: 28px;
   color: #00aaff;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.screen p {
+  font-size: 16px;
+  margin: 8px 0;
 }
 
 .screen button {
   background: #00aaff;
   color: white;
   border: none;
-  padding: 15px 30px;
-  font-size: 20px;
+  padding: 16px 32px;
+  font-size: 18px;
   font-weight: bold;
-  border-radius: 10px;
-  margin-top: 20px;
+  border-radius: 12px;
+  margin-top: 15px;
   cursor: pointer;
+  width: 90%;
+  max-width: 250px;
+  /* FIX 4: Mobile pe button dabaane ka feel */
+  -webkit-appearance: none;
+  appearance: none;
+  touch-action: manipulation;
 }
 
 .screen button:active {
   transform: scale(0.95);
+  background: #0088cc;
 }
 
 .controls {
-  margin-top: 20px;
-  font-size: 14px;
-  opacity: 0.8;
+  margin-top: 15px;
+  font-size: 13px;
+  opacity: 0.9;
+  line-height: 1.6;
 }
 
 .controls p {
-  margin: 5px 0;
+  margin: 4px 0;
 }
 
 .hidden {
-  display: none;
+  display: none !important; /* FIX 5: Force se gayab karo */
 }
 
 #final-score, #high-score {
-  font-size: 20px;
-  margin: 10px 0;
+  font-size: 18px;
+  margin: 8px 0;
+  font-weight: bold;
+}
+
+/* FIX 6: Chhote phone ke liye */
+@media (max-height: 600px) {
+  .screen {
+    padding: 15px;
+  }
+  .screen h1 {
+    font-size: 24px;
+  }
+  .screen button {
+    padding: 12px 24px;
+    font-size: 16px;
+  }
 }
